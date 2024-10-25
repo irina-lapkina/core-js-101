@@ -180,8 +180,24 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  const map = new Map();
+  for (let i = 0; i < str.length; i += 1) {
+    const current = str[i];
+
+    if (map.has(current)) {
+      map.set(current, map.get(current) + 1);
+    } else {
+      map.set(current, 1);
+    }
+  }
+
+  for (let i = 0; i < str.length; i += 1) {
+    if (map.get(str[i]) === 1) {
+      return str.charAt(i);
+    }
+  }
+  return null;
 }
 
 /**
@@ -242,8 +258,13 @@ function reverseString(str) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  let reverse = '';
+  const str = num.toString();
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    reverse += str[i];
+  }
+  return +reverse;
 }
 
 /**
